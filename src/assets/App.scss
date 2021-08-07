@@ -1,17 +1,33 @@
 @import '~bootstrap/scss/bootstrap';
 // ---------------------------------------------------------------------------------------------------------------------
+// --------------------------------- FONTS
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&family=Roboto:wght@900&display=swap');
+*{
+  font-family: 'Nunito', sans-serif;
+}
+// ---------------------------------------------------------------------------------------------------------------------
 // --------------------------------- VARIABLES
 
 // ---------------------------------------------------------------------------------------------------------------------
 // --------------------------------- COMPONENTS
 .app_login_left_side {
-  background: black;
+  background: rgb(25,93,126);
+  background: linear-gradient(180deg, rgba(25,93,126,1) 68%, rgba(247,180,167,0.7) 99%);
   color: white;
-  max-width: 380px;
-  .app_left_banner{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  max-width: 600px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+
+  .app_typing_text{
+    font-size: 30px;
+    margin-bottom: map-get($spacers, 4);
+    span{
+      font-family: 'Roboto', sans-serif;
+      font-size: inherit;
+      font-weight: bolder;
+    }
   }
 }
 
@@ -48,7 +64,7 @@
   justify-content: space-between;
   height: 100vh;
 
-  div {
+  > div {
     flex-grow: 1;
   }
 }
