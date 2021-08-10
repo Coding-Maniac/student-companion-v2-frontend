@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { AppLoadingWrapper } from 'components';
 
 interface homeProps {
   isLoading: boolean;
@@ -17,23 +18,9 @@ const AttendanceDisplayCard = () => (
   </div>
 );
 
-const AppLoadingWrapper: FC<homeProps> = ({ isLoading, children }) => (
-  <div>
-    {isLoading ? (
-      <div className="app_loader">
-        <div className="spinner-grow text-dark" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    ) : (
-      children
-    )}
-  </div>
-);
-
-const Home: FC<homeProps> = ({ isLoading = false }) => (
+const Home: FC<homeProps> = ({ isLoading = true }) => (
   <AppLoadingWrapper isLoading={isLoading}>
-    <div className="home container my-5">
+    <div className="home container py-5">
       <div className="row">
         <div className="col-md-4">
           <AttendanceDisplayCard />
