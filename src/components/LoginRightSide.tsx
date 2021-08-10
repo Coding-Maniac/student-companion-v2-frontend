@@ -1,9 +1,5 @@
 import { ChangeEvent, FC, useState } from 'react';
 
-const handleSubmit = () => {
-  console.log('sumbit');
-};
-
 const LoginRightSide: FC<{}> = () => {
   const [formValues, setFormValues] = useState({
     rollNumber: '',
@@ -21,7 +17,7 @@ const LoginRightSide: FC<{}> = () => {
     <div className="app_login_right_side">
       <h1 className="login_heading">Welcome to Scholar Buddy</h1>
 
-      <form className="app_login_form" onSubmit={handleSubmit}>
+      <form className="app_login_form">
         <div>
           <label htmlFor="rollNumber" className="form-label">
             <p>Roll Number</p>
