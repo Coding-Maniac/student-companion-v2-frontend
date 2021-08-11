@@ -6,6 +6,7 @@ import { AppLoadingWrapper } from './index';
 const LoginRightSide: FC<{}> = () => {
   const [formValues, setFormValues] = useState({ rollNumber: '', password: '' });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const history = useHistory();
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormValues({ ...formValues, [event.target.name]: event.target.value });
@@ -19,10 +20,17 @@ const LoginRightSide: FC<{}> = () => {
       .then((response: any) => {
         if (response.status === 404) {
           setLoading(false);
+          setError('Kindly check your Roll Number and password');
+          return null;
         }
         return response.json();
       })
-      .then((response) => history.push('/home', response))
+      .then((response) => {
+        if (response === null) {
+          return;
+        }
+        history.push('/home', response);
+      })
       .catch(() => setLoading(false));
   };
 
@@ -30,7 +38,7 @@ const LoginRightSide: FC<{}> = () => {
     <div className="app_login_right_side">
       <AppLoadingWrapper isLoading={loading}>
         <h1 className="login_heading">Welcome to Scholar Buddy</h1>
-
+        <p className="text-danger">{error}</p>
         <form className="app_login_form" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="rollNumber" className="form-label">
