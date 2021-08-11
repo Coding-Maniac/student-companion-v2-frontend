@@ -10,7 +10,7 @@ export const BASEURL = getApiHostUrl();
  * Centralized function to fetch APIs
  * */
 
-export const triggerSimpleAjax = (endpoint: string, method = 'POST', data = {}) => {
+export const triggerSimpleAjax = (endpoint: string, method = 'POST', data = {}): Promise<null | Response> => {
   const URL = `${BASEURL}/${endpoint}`;
   return new Promise((resolve, reject) => {
     fetch(URL, {

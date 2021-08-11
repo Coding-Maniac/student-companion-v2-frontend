@@ -19,10 +19,10 @@ const LoginRightSide: FC<{}> = () => {
       .then((response: any) => {
         if (response.status === 404) {
           setLoading(false);
-        } else {
-          history.push('/home');
         }
+        return response.json();
       })
+      .then((response) => history.push('/home', response))
       .catch(() => setLoading(false));
   };
 
