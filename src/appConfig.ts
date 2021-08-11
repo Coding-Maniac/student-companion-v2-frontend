@@ -4,7 +4,7 @@
 
 export const getApiHostUrl = (): string => {
   if (process.env.NODE_ENV === 'development') {
-    return 'http://192.168.1.10:8000'; // Runs in local machine
+    return 'http://a2bfc03ee619.ngrok.io'; // Runs in local machine
   }
-  return 'https://502a35e02399.ngrok';
+  return 'http://a2bfc03ee619.ngrok.io';
 };
