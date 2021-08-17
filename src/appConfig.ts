@@ -4,7 +4,7 @@
 
 export const getApiHostUrl = (): string => {
   if (process.env.NODE_ENV === 'development') {
-    return 'https://a2bfc03ee619.ngrok.io'; // Runs in local machine
+    return 'http://localhost:3030'; // Runs in local machine
   }
-  return 'https://a2bfc03ee619.ngrok.io';
+  return 'https://3a33988c73a9.ngrok.io';
 };
