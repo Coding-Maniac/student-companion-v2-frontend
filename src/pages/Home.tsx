@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { AppLoadingWrapper } from 'components';
+import { AppLoadingWrapper, AppNavbar } from 'components';
 import { useLocation } from 'react-router-dom';
 
 interface homeProps {
@@ -14,7 +14,13 @@ interface AttendanceDisplayProps {
   percentage: number;
 }
 
-const AttendanceDisplayCard: FC<AttendanceDisplayProps> = ({ bgColor = 'success', subjectName, totalClasses, attendedClasses, percentage }) => (
+const AttendanceDisplayCard: FC<AttendanceDisplayProps> = ({
+  bgColor = 'success',
+  subjectName,
+  totalClasses,
+  attendedClasses,
+  percentage,
+}) => (
   <div className={`attendance-card card bg-${bgColor} mb-4 text-white`}>
     <div className="card-body">
       <div className="d-flex justify-content-between align-items-center">
@@ -61,6 +67,7 @@ const Home: FC<homeProps> = ({ isLoading = false }) => {
   }
   return (
     <AppLoadingWrapper isLoading={isLoading}>
+      <AppNavbar />
       <div className="home container py-5">
         <div className="row">
           {attendanceCardData.map((data: any) => (
@@ -74,9 +81,6 @@ const Home: FC<homeProps> = ({ isLoading = false }) => {
               />
             </div>
           ))}
-          <div className="col-md-6">
-            <AttendanceDisplayCard bgColor="danger" subjectName="Software Engineering" attendedClasses={20} totalClasses={20} percentage={20} />
-          </div>
         </div>
       </div>
     </AppLoadingWrapper>

@@ -48,8 +48,6 @@ const LoginRightSide: FC<{}> = () => {
                 name="rollNumber"
                 className="form-control"
                 type="number"
-                maxLength={6}
-                minLength={6}
                 placeholder="Enter your roll number"
                 value={formValues.rollNumber}
                 onChange={handleChange}
