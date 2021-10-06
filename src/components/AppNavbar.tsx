@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Container, Navbar, Nav } from 'react-bootstrap';
+import { APP_GRADES_PAGE, APP_LANDING_PAGE } from '../common/Routes';
 
 const AppNavbar: FC<{}> = () => {
   console.log('hello');
@@ -8,9 +9,9 @@ const AppNavbar: FC<{}> = () => {
       <Container>
         <Navbar.Brand href="#"> SC </Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link href="#">Attendance</Nav.Link>
+          <Nav.Link href={APP_LANDING_PAGE}>Attendance</Nav.Link>
           <Nav.Link href="#charts">Attendance Charts</Nav.Link>
-          <Nav.Link href="#grades">Grades</Nav.Link>
+          <Nav.Link href={APP_GRADES_PAGE}>Grades</Nav.Link>
         </Nav>
       </Container>
     </Navbar>

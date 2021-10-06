@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { AppLoadingWrapper, AppNavbar } from 'components';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 interface homeProps {
   isLoading: boolean;
@@ -51,9 +51,16 @@ const AttendanceDisplayCard: FC<AttendanceDisplayProps> = ({
 
 const Home: FC<homeProps> = ({ isLoading = false }) => {
   const location: any = useLocation();
+  const history = useHistory();
+  useEffect(() => {
+    const attendanceData = location.state;
+    if (!attendanceData) {
+      history.push('/');
+    }
+  }, []);
   const attendanceData = location.state;
   const attendanceCardData: any = [];
-  for (let i = 0; i < Object.keys(attendanceData).length; i += 1) {
+  for (let i = 0; i < Object.keys(attendanceData || {}).length; i += 1) {
     const subjectName = Object.keys(attendanceData)[i];
     const subjectValues = attendanceData[subjectName];
     const bgColor = subjectValues.attendancePercentage > 75 ? 'success' : 'danger';
@@ -70,7 +77,7 @@ const Home: FC<homeProps> = ({ isLoading = false }) => {
       <AppNavbar />
       <div className="home container py-5">
         <div className="row">
-          {attendanceCardData.map((data: any) => (
+          {(attendanceCardData || []).map((data: any) => (
             <div className="col-md-6">
               <AttendanceDisplayCard
                 bgColor={data.bgColor}

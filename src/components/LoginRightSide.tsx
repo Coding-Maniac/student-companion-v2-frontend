@@ -29,6 +29,8 @@ const LoginRightSide: FC<{}> = () => {
         if (response === null) {
           return;
         }
+        localStorage.setItem('rollNumber', reqBody.rollNumber);
+        localStorage.setItem('password', reqBody.password);
         history.push('/home', response);
       })
       .catch(() => setLoading(false));
