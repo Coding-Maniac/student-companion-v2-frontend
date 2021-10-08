@@ -52,6 +52,7 @@
         "allowExpressions": true
       }
     ],
+    "react/jsx-one-expression-per-line": "off",
     "max-len": ["warn", { "code": 120 }],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
