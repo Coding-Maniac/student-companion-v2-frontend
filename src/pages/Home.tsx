@@ -12,6 +12,7 @@ interface AttendanceDisplayProps {
   totalClasses: number;
   attendedClasses: number;
   percentage: number;
+  numberOfClassesToAttend: any;
 }
 
 const AttendanceDisplayCard: FC<AttendanceDisplayProps> = ({
@@ -20,6 +21,7 @@ const AttendanceDisplayCard: FC<AttendanceDisplayProps> = ({
   totalClasses,
   attendedClasses,
   percentage,
+  numberOfClassesToAttend = 0,
 }) => (
   <div className={`attendance-card card bg-${bgColor} mb-4 text-white`}>
     <div className="card-body">
@@ -33,6 +35,10 @@ const AttendanceDisplayCard: FC<AttendanceDisplayProps> = ({
           <p>
             Attended Classes
             <span className="number_circle">{attendedClasses}</span>
+          </p>
+          <p>
+            Number of Classes to Attend
+            <span className="number_circle">{numberOfClassesToAttend}</span>
           </p>
         </div>
         <div>
@@ -78,13 +84,14 @@ const Home: FC<homeProps> = ({ isLoading = false }) => {
       <div className="home container py-5">
         <div className="row">
           {(attendanceCardData || []).map((data: any) => (
-            <div className="col-md-6">
+            <div className="col-md-4">
               <AttendanceDisplayCard
                 bgColor={data.bgColor}
                 subjectName={data.subjectName}
                 totalClasses={data.totalClasses}
                 attendedClasses={data.attendedClasses}
                 percentage={data.percentage}
+                numberOfClassesToAttend={data.numberOfClassesToAttend}
               />
             </div>
           ))}

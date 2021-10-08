@@ -10,7 +10,7 @@ const AppNavbar: FC<{}> = () => {
         <Navbar.Brand href="#"> SC </Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link href={APP_LANDING_PAGE}>Attendance</Nav.Link>
-          <Nav.Link href="#charts">Attendance Charts</Nav.Link>
+          <Nav.Link href="#charts">Internals</Nav.Link>
           <Nav.Link href={APP_GRADES_PAGE}>Grades</Nav.Link>
         </Nav>
       </Container>

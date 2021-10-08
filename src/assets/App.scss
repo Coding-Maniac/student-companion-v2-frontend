@@ -164,6 +164,10 @@
         -webkit-line-clamp: 10;
       }
     }
+    &.bg-success{
+      //background: rgb(40,121,9);
+      //background: linear-gradient(90deg, rgba(40,121,9,1) 6%, rgba(7,255,0,0.6068802521008403) 79%);
+    }
     .number_circle{
       @extend .app_circle_1;
       background: $white;
