@@ -1,26 +1,34 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { triggerSimpleAjax } from '../appConfig/helper';
 import { AppLoadingWrapper, AppNavbar } from '../components';
 import { GRADES_COUNT } from '../common/ApiUrl';
 
-const getDataForGrades = (setGrades, setLoading) => {
-  triggerSimpleAjax(GRADES_COUNT, 'POST', {
-    rollNumber: '18113075',
-    password: '123456',
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      setGrades(res);
-      setLoading(false);
-    });
+const getDataForGrades = (setGrades, setLoading, history) => {
+  const rollNumber = localStorage.getItem('rollNumber');
+  const password = localStorage.getItem('password');
+  if (rollNumber && password) {
+    triggerSimpleAjax(GRADES_COUNT, 'POST', {
+      rollNumber: '18113075',
+      password: '123456',
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setGrades(res);
+        setLoading(false);
+      });
+  } else {
+    history.push('/');
+  }
 };
 
 const Grades = () => {
+  const history = useHistory();
   const [gradesCount, setGrades] = useState({});
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    getDataForGrades(setGrades, setLoading);
+    getDataForGrades(setGrades, setLoading, history);
   }, []);
 
   return (
