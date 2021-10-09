@@ -44,8 +44,8 @@ const Grades = () => {
     title: grade,
     value: gradesCount[grade],
     color: colorCode[grade],
+    label: 'hi',
   }));
-
   const [selected, setSelected] = useState(0);
   const [hovered, setHovered] = useState(undefined);
   const data = gradesForPie.map((entry, i) => {

@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, FormEvent, useState } from 'react';
+import { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
 import { triggerSimpleAjax } from 'appConfig/helper';
 import { useHistory } from 'react-router-dom';
 import { AppLoadingWrapper } from './index';
@@ -12,10 +12,7 @@ const LoginRightSide: FC<{}> = () => {
     setFormValues({ ...formValues, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setLoading(true);
-    const reqBody = { rollNumber: formValues.rollNumber, password: formValues.password };
+  const loginHandler = (reqBody: any) => {
     triggerSimpleAjax('attendance', 'POST', reqBody)
       .then((response: any) => {
         if (response.status === 404) {
@@ -35,6 +32,25 @@ const LoginRightSide: FC<{}> = () => {
       })
       .catch(() => setLoading(false));
   };
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setLoading(true);
+    const reqBody = { rollNumber: formValues.rollNumber, password: formValues.password };
+    loginHandler(reqBody);
+  };
+
+  useEffect(() => {
+    const rollNumber = localStorage.getItem('rollNumber');
+    const password = localStorage.getItem('password');
+    if (rollNumber && password) {
+      setLoading(true);
+      const reqBody = {
+        rollNumber,
+        password,
+      };
+      loginHandler(reqBody);
+    }
+  }, []);
 
   return (
     <div className="app_login_right_side">
